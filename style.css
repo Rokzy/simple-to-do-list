@@ -1,0 +1,39 @@
+.container {
+    max-width: 900px;
+    background-color: rgb(126, 134, 141);
+    margin: 0 auto;
+    border: 2px;
+    border-top: 0;
+    border-color: gold;
+    border-style: double;
+}
+
+header {
+    margin: 0 auto;
+    max-width: 900px;
+    align-items: center;
+    background-color: rgb(126, 134, 141);
+    text-align: center;
+    border: 2px;
+    border-color: gold;
+    border-style: double;
+    border-bottom: 0;
+}
+
+li {
+   text-decoration: none; 
+   list-style-type: none;
+   padding: 10px 10px;
+   text-align: center;
+}
+
+input {
+    display: inline-block;
+    
+}
+
+#btn {
+    background-color: aliceblue;
+    border-radius: 25px;
+    padding: 0.3em 1.3em 0.3em 1.3em;
+}
