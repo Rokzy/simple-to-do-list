@@ -13,7 +13,17 @@ function newTask(inputValue) {
   li.appendChild(span2);
   span2.addEventListener("click", function (event) {
     removeItem(event);
+    /*
+    if (span === "☑️"){
+      document.getElementsByTagName(span2).hidden = true;
+    }
+    else {
+      document.getElementsByTagName(span2).hidden = false;
+    } */
   });
+  
+ 
+
   if (inputValue === "") {
     alert("Write down your task!");
   } else {
@@ -29,14 +39,14 @@ function handleClick() {
 /*
 function check(event) {
   let checkIt = '';
-  if (span === '☑️'){
+  if (event.target.span.innerHTML === '☑️'){
     checkIt = '✅';
   } else {
     checkIt = '☑️';
   }
-  event.target.span = checkIt;
-} 
-*/
+  event.target.span.innerHTML = checkIt;
+} */
+
 let tasks = [
   "dog walk",
   "car wash",
