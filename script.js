@@ -6,6 +6,7 @@ function newTask(inputValue) {
   li.appendChild(span);
   span.addEventListener("click", function (event) {
     newStyle(event);
+   // check(event);
   });
   var span2 = document.createElement("span");
   span2.textContent = "❌";
@@ -25,7 +26,17 @@ function handleClick() {
   var inputValue = document.getElementById("userInput").value;
   newTask(inputValue);
 }
-
+/*
+function check(event) {
+  let checkIt = '';
+  if (span === '☑️'){
+    checkIt = '✅';
+  } else {
+    checkIt = '☑️';
+  }
+  event.target.span = checkIt;
+} 
+*/
 let tasks = [
   "dog walk",
   "car wash",
