@@ -6,20 +6,16 @@ function newTask(inputValue) {
   li.appendChild(span);
   span.addEventListener("click", function (event) {
     newStyle(event);
-   // check(event);
+   
   });
   var span2 = document.createElement("span");
   span2.textContent = "❌";
+  span2.style.display = 'none';
   li.appendChild(span2);
   span2.addEventListener("click", function (event) {
     removeItem(event);
-    /*
-    if (span === "☑️"){
-      document.getElementsByTagName(span2).hidden = true;
-    }
-    else {
-      document.getElementsByTagName(span2).hidden = false;
-    } */
+  
+  
   });
   
  
@@ -36,35 +32,8 @@ function handleClick() {
   var inputValue = document.getElementById("userInput").value;
   newTask(inputValue);
 }
-/*
-function check(event) {
-  let checkIt = '';
-  if (event.target.span.innerHTML === '☑️'){
-    checkIt = '✅';
-  } else {
-    checkIt = '☑️';
-  }
-  event.target.span.innerHTML = checkIt;
-} */
 
-let tasks = [
-  "dog walk",
-  "car wash",
-  "cleaning",
-  "grocery shopping",
-  "laundry",
-  "dinner",
-  "workout",
-  "read a book",
-  "watch a movie",
-  "go to the gym",
-  "go to the beach",
-  "go to the park",
-  "go to the mall",
-  "go to the movies",
-];
 
-tasks.forEach(newTask);
 
 function removeItem(event) {
   debugger;
@@ -74,12 +43,17 @@ function removeItem(event) {
 function newStyle(event) {
   debugger;
   let newColor = "";
+  const parentItem = event.target.parentElement
+  const crossMark = parentItem.querySelector('span:nth-child(2)')
+  
 
-  if (event.target.parentElement.style.color === "blue") {
+  if (parentItem.style.color === "blue") {
     newColor = "black";
   } else {
     newColor = "blue";
+    crossMark.style.display = 'inline-block';
+    event.target.textContent = '✅';
   }
 
-  event.target.parentElement.style.color = newColor;
+  parentItem.style.color = newColor;
 }
