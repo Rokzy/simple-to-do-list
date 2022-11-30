@@ -1,49 +1,75 @@
 .container {
-    max-width: 900px;
-    background-color: rgb(126, 134, 141);
-    margin: 0 auto;
-    border: 2px;
-    border-top: 0;
-    border-color: gold;
-    border-style: double;
+    width: 40%;
+    top: 30%;
+    left: 50%;
+    background: white;
+    border-radius: 10px;
+    min-width: 450px;
+    position: absolute;
+    min-height: 150px;
+    transform: translate(-50%,-50%);
 }
 
-header {
-    margin: 0 auto;
-    max-width: 900px;
-    background-color: rgb(126, 134, 141);
-    text-align: center;
-    border: 2px;
-    border-color: gold;
-    border-style: double;
-    border-bottom: 0;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    font-size: 1.3em;
-    font-weight: bold;
-    padding: 10px 0;
-
+body {
+    height: 100vh;
+    background-color: skyblue;
+    background-image: linear-gradient(to top right, rgb(40, 106, 250), rgb(255, 255, 255));
 }
 
 
-li {
+/*li {
    text-decoration: none; 
    list-style-type: none;
    padding: 10px 10px;
    text-align: left;
+}*/
+
+.input-container {
+    position: relative;
+    padding: 15px 15px;
 }
 
-input {
-    display: inline-block;
-    
+.input-container input{
+    width: 75%;
+    height: 22px;
+    padding: 10px;
+    color: #111111;
+    font-weight: 500;
+    position: relative;
+    border-radius: 5px;
+    font-family: 'Poppins',sans-serif;
+    font-size: 15px;
+    border: 2px solid #d1d3d4;
 }
 
 #btn {
-    background-color: aliceblue;
-    border-radius: 25px;
+    background-color: rgb(194, 226, 255);
+    border-radius: 5px;
     padding: 0.3em 1.3em 0.3em 1.3em;
+    float: right;
+    width: 20%;
+    font-family: 'Poppins',sans-serif;
+    position: relative;
+    height: 45px;
+    
 }
 
-#testLi p{
-    display: inline-block;
-    margin-left: 50px;
+#taskList li {
+    border-radius: 10px;
+    width: 75%;
+    position: relative;
+    background-color: rgb(221, 221, 221);
+    padding: 30px 20px;
+    margin-top: 10px;
+    text-decoration: none; 
+    list-style-type: none;
+    display: flex;
+}
+
+#taskList {
+    border-radius: 10px;
+    width: 75%;
+    position: relative;
+    padding: 30px 20px;
+    margin-top: 10px;
 }
