@@ -1,6 +1,6 @@
 function newTask(inputValue) {
   var li = document.createElement("li");
-  li.textContent = inputValue;
+  
   var span = document.createElement("span");
   span.textContent = "☑️"; // ✅
   li.appendChild(span);
@@ -14,10 +14,11 @@ function newTask(inputValue) {
   span2.addEventListener("click", function (event) {
     removeItem(event);
   
-  
+    
   });
-  
- 
+  var spanText = document.createElement('span');
+  spanText.textContent = inputValue;
+  li.appendChild(spanText);
 
   if (inputValue === "") {
     alert("Write down your task!");
@@ -26,23 +27,26 @@ function newTask(inputValue) {
   }
   document.getElementById("userInput").value = "";
 
-  saveLocaly(inputValue);
+  
 }
 
 function handleClick() {
   var inputValue = document.getElementById("userInput").value;
   newTask(inputValue);
+  saveLocaly(inputValue);
 }
 
 
 
 function removeItem(event) {
   debugger;
+  let deleteTest = event.target.parentElement.querySelector("span:last-child").innerText;
   event.target.parentElement.remove();
+  removeFromLocalStorage(deleteTest);
 }
 
 function newStyle(event) {
-  debugger;
+  
   let newColor = "";
   const parentItem = event.target.parentElement
   const crossMark = parentItem.querySelector('span:nth-child(2)')
@@ -66,6 +70,33 @@ function saveLocaly(taskList) {
   } else {
     todos = JSON.parse(localStorage.getItem('todos'));
   } 
+  
   todos.push(taskList)
   localStorage.setItem('todos', JSON.stringify(todos));
+}
+
+
+function loadFromLocalStorage() {
+  let todos;
+  if(localStorage.getItem('todos') === null) {
+    todos = [];
+  } else {
+    todos = JSON.parse(localStorage.getItem('todos'));
+  } 
+  
+  todos.map(newTask)
+}
+loadFromLocalStorage();
+
+function removeFromLocalStorage(burek) {
+  let todos;
+  if(localStorage.getItem('todos') === null) {
+    return ;
+  } else {
+    todos = JSON.parse(localStorage.getItem('todos'));
+  }
+
+  // todos je array
+  // Zbrisi iz todos tisti element ki ima vrednost spremenljivke burek
+  // Torej, zapisi v localStorage nov array, ki ne vsebuje tega elementa
 }
