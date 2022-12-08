@@ -6,7 +6,6 @@ function newTask(inputValue) {
   li.appendChild(span);
   span.addEventListener("click", function (event) {
     newStyle(event);
-   
   });
   var span2 = document.createElement("span");
   span2.textContent = "❌";
@@ -26,6 +25,8 @@ function newTask(inputValue) {
     document.getElementById("taskList").appendChild(li);
   }
   document.getElementById("userInput").value = "";
+
+  saveLocaly(inputValue);
 }
 
 function handleClick() {
@@ -56,4 +57,15 @@ function newStyle(event) {
   }
 
   parentItem.style.color = newColor;
+}
+
+function saveLocaly(taskList) {
+  let todos;
+  if(localStorage.getItem('todos') === null) {
+    todos = [];
+  } else {
+    todos = JSON.parse(localStorage.getItem('todos'));
+  } 
+  todos.push(taskList)
+  localStorage.setItem('todos', JSON.stringify(todos));
 }
