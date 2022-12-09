@@ -1,6 +1,9 @@
 function newTask(inputValue) {
   var li = document.createElement("li");
-  
+  var spanText = document.createElement('span');
+  spanText.textContent = inputValue;
+  li.appendChild(spanText);
+
   var span = document.createElement("span");
   span.textContent = "☑️"; // ✅
   li.appendChild(span);
@@ -16,10 +19,7 @@ function newTask(inputValue) {
   
     
   });
-  var spanText = document.createElement('span');
-  spanText.textContent = inputValue;
-  li.appendChild(spanText);
-
+  
   if (inputValue === "") {
     alert("Write down your task!");
   } else {
@@ -39,7 +39,7 @@ function handleClick() {
 
 
 function removeItem(event) {
-  debugger;
+ // debugger;
   let deleteTest = event.target.parentElement.querySelector("span:last-child").innerText;
   event.target.parentElement.remove();
   removeFromLocalStorage(deleteTest);
@@ -49,7 +49,7 @@ function newStyle(event) {
   
   let newColor = "";
   const parentItem = event.target.parentElement
-  const crossMark = parentItem.querySelector('span:nth-child(2)')
+  const crossMark = parentItem.querySelector('span:nth-child(3)')
   
 
   if (parentItem.style.color === "blue") {
@@ -95,6 +95,11 @@ function removeFromLocalStorage(burek) {
   } else {
     todos = JSON.parse(localStorage.getItem('todos'));
   }
+
+  var itemIndex = todos.indexOf(burek);
+
+    todos.splice(itemIndex, 1) 
+    localStorage.setItem("todos", JSON.stringify(todos));
 
   // todos je array
   // Zbrisi iz todos tisti element ki ima vrednost spremenljivke burek
