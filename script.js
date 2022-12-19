@@ -4,17 +4,17 @@ function newTask(inputValue) {
   spanText.textContent = inputValue;
   li.appendChild(spanText);
 
-  var span = document.createElement("span");
-  span.textContent = "☑️"; // ✅
-  li.appendChild(span);
-  span.addEventListener("click", function (event) {
+  var button = document.createElement("button");
+  button.textContent = "☑️"; // ✅
+  li.appendChild(button);
+  button.addEventListener("click", function (event) {
     newStyle(event);
   });
-  var span2 = document.createElement("span");
-  span2.textContent = "❌";
-  span2.style.display = 'none';
-  li.appendChild(span2);
-  span2.addEventListener("click", function (event) {
+  var button2 = document.createElement("button");
+  button2.textContent = "❌";
+  button2.style.display = 'none';
+  li.appendChild(button2);
+  button2.addEventListener("click", function (event) {
     removeItem(event);
   
     
@@ -40,7 +40,7 @@ function handleClick() {
 
 function removeItem(event) {
  // debugger;
-  let deleteTest = event.target.parentElement.querySelector("span:last-child").innerText;
+  let deleteTest = event.target.parentElement.querySelector("button:last-child").innerText;
   event.target.parentElement.remove();
   removeFromLocalStorage(deleteTest);
 }
@@ -49,7 +49,7 @@ function newStyle(event) {
   
   let newColor = "";
   const parentItem = event.target.parentElement
-  const crossMark = parentItem.querySelector('span:nth-child(3)')
+  const crossMark = parentItem.querySelector('button:nth-child(3)')
   
 
   if (parentItem.style.color === "blue") {
