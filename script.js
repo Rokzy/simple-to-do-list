@@ -1,7 +1,18 @@
-function newTask(inputValue) {
+let taskList = [];
+
+function addTaskToList(inputValue) {
+  const newTask = {
+    text: inputValue,
+    done: false
+  }
+  taskList.push(newTask)
+  return newTask
+}
+
+function drawTask({ text, done }) {
   var li = document.createElement("li");
   var spanText = document.createElement('span');
-  spanText.textContent = inputValue;
+  spanText.textContent = text;
   li.appendChild(spanText);
 
   var button = document.createElement("button");
@@ -16,33 +27,29 @@ function newTask(inputValue) {
   li.appendChild(button2);
   button2.addEventListener("click", function (event) {
     removeItem(event);
-  
-    
   });
   
-  if (inputValue === "") {
+  if (text === "") {
     alert("Write down your task!");
   } else {
     document.getElementById("taskList").appendChild(li);
   }
   document.getElementById("userInput").value = "";
-
-  
 }
 
 function handleClick() {
   var inputValue = document.getElementById("userInput").value;
-  newTask(inputValue);
-  saveLocaly(inputValue);
+  const newTask = addTaskToList(inputValue);
+  drawTask(newTask);
+  saveLocaly(taskList);
 }
-
-
 
 function removeItem(event) {
  // debugger;
-  let deleteTest = event.target.parentElement.querySelector("button:last-child").innerText;
+  let deleteText = event.target.parentElement.querySelector("button:last-child").innerText;
+  taskList = taskList.filter(task => task.text !== deleteText)
   event.target.parentElement.remove();
-  removeFromLocalStorage(deleteTest);
+  saveLocaly(taskList);
 }
 
 function newStyle(event) {
@@ -51,7 +58,6 @@ function newStyle(event) {
   const parentItem = event.target.parentElement
   const crossMark = parentItem.querySelector('button:nth-child(3)')
   
-
   if (parentItem.style.color === "blue") {
     newColor = "black";
   } else {
@@ -64,17 +70,8 @@ function newStyle(event) {
 }
 
 function saveLocaly(taskList) {
-  let todos;
-  if(localStorage.getItem('todos') === null) {
-    todos = [];
-  } else {
-    todos = JSON.parse(localStorage.getItem('todos'));
-  } 
-  
-  todos.push(taskList)
-  localStorage.setItem('todos', JSON.stringify(todos));
+  localStorage.setItem('todos', JSON.stringify(taskList));
 }
-
 
 function loadFromLocalStorage() {
   let todos;
@@ -84,24 +81,34 @@ function loadFromLocalStorage() {
     todos = JSON.parse(localStorage.getItem('todos'));
   } 
   
-  todos.map(newTask)
+  taskList = todos;
+  taskList.map(drawTask)
 }
 loadFromLocalStorage();
 
-function removeFromLocalStorage(burek) {
-  let todos;
-  if(localStorage.getItem('todos') === null) {
-    return ;
-  } else {
-    todos = JSON.parse(localStorage.getItem('todos'));
-  }
+// const tasks = [
+//   'asdf',
+//   'fff',
+//   'dddd'
+// ]
 
-  var itemIndex = todos.indexOf(burek);
+// const tasksNew = [
+//   {
+//     text: 'asdf',
+//     done: false
+//   },
+//   {
+//     text: 'fff',
+//     done: false
+//   },
+//   {
+//     text: 'dddd',
+//     done: false
+//   }
+// ]
 
-    todos.splice(itemIndex, 1) 
-    localStorage.setItem("todos", JSON.stringify(todos));
+// const testArray = [
+//   5,7,13,14,2,19,1,8,11,18,3,4,6,9,10,12,15,16,17,20
+// ]
 
-  // todos je array
-  // Zbrisi iz todos tisti element ki ima vrednost spremenljivke burek
-  // Torej, zapisi v localStorage nov array, ki ne vsebuje tega elementa
-}
+// const filteredArray = testArray.filter(item => item < 10)
