@@ -42,7 +42,24 @@ function handleClick() {
   const newTask = addTaskToList(inputValue);
   drawTask(newTask);
   saveLocaly(taskList);
+  handleKeyPress();
 }
+
+/* tukaj sem potem poizkušal razno razne (malo sem skopiral iz handle click itd. itd. )
+function handleKeyPress() {
+  debugger
+  var inputValue = document.getElementById("userInput");
+  const newTask = addTaskToList(inputValue);
+  drawTask(newTask);
+    saveLocaly(taskList);
+inputValue.addEventListener("keypress", function(event) {
+  if (event.key === "Enter") {
+    document.getElementById("btn").click();
+    
+  }
+});
+} */
+
 
 function removeItem(event) {
  // debugger;
