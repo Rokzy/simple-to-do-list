@@ -20,7 +20,8 @@ function drawTask({ text, done }) {
   li.appendChild(button);
   button.addEventListener("click", function (event) {
     newStyle(event);
-  });
+
+      });
   var button2 = document.createElement("button");
   button2.textContent = "❌";
   button2.style.display = 'none';
@@ -42,10 +43,10 @@ function handleClick() {
   const newTask = addTaskToList(inputValue);
   drawTask(newTask);
   saveLocaly(taskList);
-  handleKeyPress();
+  
 }
 
-/* tukaj sem potem poizkušal razno razne (malo sem skopiral iz handle click itd. itd. )
+/* tukaj sem potem poizkušal razno razne (malo sem skopiral iz handle click itd. itd. )*/
 function handleKeyPress() {
   debugger
   var inputValue = document.getElementById("userInput");
@@ -58,7 +59,7 @@ inputValue.addEventListener("keypress", function(event) {
     
   }
 });
-} */
+} 
 
 
 function removeItem(event) {
@@ -103,6 +104,18 @@ function loadFromLocalStorage() {
 }
 loadFromLocalStorage();
 
+/*
+function moveItemToCompleted() {
+  var completedItem = document.querySelector('button')
+  var completedDiv = document.getElementById('taskListCompleted')
+  if (completedItem === "☑️") {
+    return default;
+  }
+   else (completedItem === '✅') {
+    completedDiv.appendChild(completedItem);
+  } 
+}
+*/
 // const tasks = [
 //   'asdf',
 //   'fff',
