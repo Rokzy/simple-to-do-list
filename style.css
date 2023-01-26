@@ -28,13 +28,10 @@ body {
   }
 
 .container {
-   /* width: 40%;
-   /* top: 30%;
-    left: 50%;*/
-    
-        margin: auto;
-        max-height: 100%;
-        overflow: auto;
+  
+    margin: auto;
+    max-height: 100%;
+    overflow: auto;
     
    background: white;
     border-radius: 10px;
@@ -83,8 +80,8 @@ body {
 }
 
 #taskList li {
-    border-radius: 10px;
-    width: 93%;
+    
+    /*width: 93%;*/
     position: relative;
     background-color: rgb(221, 221, 221);
     padding: 30px 20px;
@@ -102,15 +99,21 @@ li span {
 }
 
 #taskList {
-    border-radius: 10px;
-    width: 75%;
+   
+ 
     position: relative;
-    padding: 30px 20px;
     margin-top: 10px;
-    
 }
 
 li button:hover {
     cursor: pointer;
 }
 
+#listTitle {
+    
+
+    position: relative;
+    background-color: rgb(221, 221, 221);
+    padding: 10px 10px;
+    margin-top: 20px;
+}

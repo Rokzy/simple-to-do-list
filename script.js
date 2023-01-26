@@ -76,13 +76,16 @@ function newStyle(event) {
   const parentItem = event.target.parentElement
   const crossMark = parentItem.querySelector('button:nth-child(3)')
   
-  if (parentItem.style.color === "blue") {
+  if (parentItem.style.color === "blue" && event.target.textContent === '✅') {
     newColor = "black";
-  } else {
+    event.target.textContent = '☑️'
+    crossMark.style.display = 'none';
+  } else  {
     newColor = "blue";
     crossMark.style.display = 'inline-block';
     event.target.textContent = '✅';
-  }
+  } 
+  
 
   parentItem.style.color = newColor;
 }
@@ -98,6 +101,7 @@ function loadFromLocalStorage() {
   } else {
     todos = JSON.parse(localStorage.getItem('todos'));
   } 
+  
   
   taskList = todos;
   taskList.map(drawTask)
