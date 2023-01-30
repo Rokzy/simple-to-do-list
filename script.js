@@ -1,4 +1,11 @@
 let taskList = [];
+const taskInput = document.getElementById("userInput");
+
+taskInput.addEventListener("keypress", function(event) {
+  if (event.key === "Enter") {
+    handleClick()
+  } 
+});
 
 function addTaskToList(inputValue) {
   const newTask = {
@@ -19,23 +26,34 @@ function drawTask({ text, done }) {
   button.textContent = "☑️"; // ✅
   li.appendChild(button);
   button.addEventListener("click", function (event) {
-    newStyle(event);
-
-      });
+    completeTask(event);
+  });
   var button2 = document.createElement("button");
   button2.textContent = "❌";
   button2.style.display = 'none';
   li.appendChild(button2);
   button2.addEventListener("click", function (event) {
-    removeItem(event);
+    deleteTask(event);
   });
   
   if (text === "") {
     alert("Write down your task!");
+    return
+  }
+
+  if (done) {
+    document.getElementById("taskListCompleted").appendChild(li);
   } else {
     document.getElementById("taskList").appendChild(li);
   }
+
   document.getElementById("userInput").value = "";
+}
+
+function redrawAllTasks() {
+  document.getElementById("taskList").innerHTML = "";
+  document.getElementById("taskListCompleted").innerHTML = "";
+  taskList.map(drawTask)
 }
 
 function handleClick() {
@@ -43,52 +61,35 @@ function handleClick() {
   const newTask = addTaskToList(inputValue);
   drawTask(newTask);
   saveLocaly(taskList);
-  
 }
 
-/* tukaj sem potem poizkušal razno razne (malo sem skopiral iz handle click itd. itd. )*/
-function handleKeyPress() {
-  debugger
-  var inputValue = document.getElementById("userInput");
-  const newTask = addTaskToList(inputValue);
- 
-inputValue.addEventListener("keypress", function(event) {
-  if (event.key === "Enter") {
-    document.getElementById("btn").click();
-    
-  } 
-  drawTask(newTask);
-    saveLocaly(taskList);
-});
-} 
-
-
-function removeItem(event) {
+function deleteTask(event) {
  // debugger;
   let deleteText = event.target.parentElement.querySelector("button:last-child").innerText;
   taskList = taskList.filter(task => task.text !== deleteText)
-  event.target.parentElement.remove();
   saveLocaly(taskList);
+  redrawAllTasks()
 }
 
-function newStyle(event) {
+function completeTask(event) {
+  const taskText = event.target.parentElement.querySelector('span').textContent;
+  const task = taskList.find(task => task.text === taskText);
+  task.done = true;
+  redrawAllTasks()
+  // let newColor = "";
+  // const crossMark = parentItem.querySelector('button:nth-child(3)')
   
-  let newColor = "";
-  const parentItem = event.target.parentElement
-  const crossMark = parentItem.querySelector('button:nth-child(3)')
-  
-  if (parentItem.style.color === "blue" && event.target.textContent === '✅') {
-    newColor = "black";
-    event.target.textContent = '☑️'
-    crossMark.style.display = 'none';
-  } else  {
-    newColor = "blue";
-    crossMark.style.display = 'inline-block';
-    event.target.textContent = '✅';
-  } 
-  
+  // if (parentItem.style.color === "blue" && event.target.textContent === '✅') {
+  //   newColor = "black";
+  //   event.target.textContent = '☑️'
+  //   crossMark.style.display = 'none';
+  // } else  {
+  //   newColor = "blue";
+  //   crossMark.style.display = 'inline-block';
+  //   event.target.textContent = '✅';
+  // } 
 
-  parentItem.style.color = newColor;
+  // parentItem.style.color = newColor;
 }
 
 function saveLocaly(taskList) {
@@ -103,24 +104,10 @@ function loadFromLocalStorage() {
     todos = JSON.parse(localStorage.getItem('todos'));
   } 
   
-  
   taskList = todos;
   taskList.map(drawTask)
 }
 loadFromLocalStorage();
-
-/*
-function moveItemToCompleted() {
-  var completedItem = button.querySelector('textContent')
-  var completedDiv = document.getElementById('taskListCompleted')
-  
-  if (completedItem === "☑️") {
-    
-  }
-   else (completedItem === '✅') {
-    completedDiv.appendChild(completedItem);
-  } 
-}*/
 
 // const tasks = [
 //   'asdf',
