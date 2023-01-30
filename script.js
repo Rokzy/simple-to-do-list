@@ -51,13 +51,14 @@ function handleKeyPress() {
   debugger
   var inputValue = document.getElementById("userInput");
   const newTask = addTaskToList(inputValue);
-  drawTask(newTask);
-    saveLocaly(taskList);
+ 
 inputValue.addEventListener("keypress", function(event) {
   if (event.key === "Enter") {
     document.getElementById("btn").click();
     
-  }
+  } 
+  drawTask(newTask);
+    saveLocaly(taskList);
 });
 } 
 
@@ -110,16 +111,17 @@ loadFromLocalStorage();
 
 /*
 function moveItemToCompleted() {
-  var completedItem = document.querySelector('button')
+  var completedItem = button.querySelector('textContent')
   var completedDiv = document.getElementById('taskListCompleted')
+  
   if (completedItem === "☑️") {
-    return default;
+    
   }
    else (completedItem === '✅') {
     completedDiv.appendChild(completedItem);
   } 
-}
-*/
+}*/
+
 // const tasks = [
 //   'asdf',
 //   'fff',
