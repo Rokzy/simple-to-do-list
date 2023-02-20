@@ -28,6 +28,7 @@ function drawTask({ text, done }) {
   button.addEventListener("click", function (event) {
     completeTask(event);
   });
+
   var button2 = document.createElement("button");
   button2.textContent = "❌";
   button2.style.display = 'none';
@@ -35,12 +36,14 @@ function drawTask({ text, done }) {
   button2.addEventListener("click", function (event) {
     deleteTask(event);
   });
+
+  
   
   if (text === "") {
     alert("Write down your task!");
     return
   }
-
+  
   if (done) {
     document.getElementById("taskListCompleted").appendChild(li);
   } else {
@@ -76,6 +79,7 @@ function completeTask(event) {
   const task = taskList.find(task => task.text === taskText);
   task.done = true;
   redrawAllTasks()
+  
   // let newColor = "";
   // const crossMark = parentItem.querySelector('button:nth-child(3)')
   

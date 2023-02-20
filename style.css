@@ -79,9 +79,9 @@ body {
     cursor: pointer;
 }
 
-#taskList li {
+.task-list li{
     
-    /*width: 93%;*/
+    width: 100%;
     position: relative;
     background-color: rgb(221, 221, 221);
     padding: 30px 20px;
@@ -90,8 +90,10 @@ body {
     list-style-type: none;
     display: flex;
     justify-content: space-between;
+    flex: 1;
     
 }
+
 
 li span {
     justify-content: end;
@@ -100,14 +102,25 @@ li span {
 
 #taskList {
    
- 
+    display: flex;
     position: relative;
     margin-top: 10px;
 }
 
-.taskList {
+/*
 
-}
+.task-list {
+    position: relative;
+    background-color: rgb(221, 221, 221);
+    text-decoration: none; 
+    list-style-type: none;
+    justify-content: space-between;
+    margin-top: 10px;
+    display: flex;
+    flex-direction: column;
+} 
+*/
+
 
 li button:hover {
     cursor: pointer;
