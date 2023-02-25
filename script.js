@@ -6,7 +6,7 @@ taskInput.addEventListener("keypress", function(event) {
     handleClick()
   } 
 });
-
+//create li?
 function addTaskToList(inputValue) {
   const newTask = {
     text: inputValue,
